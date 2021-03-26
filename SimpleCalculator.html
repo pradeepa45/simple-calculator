@@ -1,0 +1,210 @@
+<html>
+    <head>
+        <title>
+            Simple Calculator
+        </title>
+        <style>
+        /* // .title{
+        //     border-radius: 10px;
+        //     margin-bottom: 10px;
+        //     text-align: center;
+        //     width: 210px;
+        //     color: #ff4456;
+        //     border: solid black 1px;
+        // } */
+
+        input[type="button"] {
+            border-radius: 3px;
+            background-color: lightblue;
+            color: black;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* My addition for clear button */
+        .red-button{
+            color: red;
+        }
+
+        input[type="text"] {
+            text-align: right;
+            background-color: white;
+            width: 100%;
+            border: 1px solid black;
+            height: 100%;
+        }
+
+        td {
+            border: none;
+        }
+
+        tr {
+            border: none;
+        }
+
+        table {
+            width: 22%;
+            height: 200px;
+        }
+    </style>
+    <script> 	
+        var array=[];	
+		function backspace(calc) {											 
+			size = calc.display.value.length; 
+			calc.display.value = calc.display.value.substring(0, size-1); 
+		} 		
+		function calculate(calc) { 
+			try {
+                
+            }
+            catch (error) {
+                calc.display.value = "There's been an error";
+                console.log(error);
+            }
+            finally {
+                if(calc.display.value.includes("/0")) { 
+				size = calc.display.value.length; 
+                calc.display.value = "cannot divide by zero";
+                }
+                else{ 
+                    array.push(calc.display.value);
+                    calc.display.value = eval(calc.display.value); 
+                }     
+            }
+        }
+            
+        function clear(calc){
+            calc.display.value = ' ';
+        }
+        function his(){
+            var test=document.createElement('section');
+            test.setAttribute('id','test');
+            var ul=document.createElement('ul');
+            
+            document.body.appendChild(test);
+            test.appendChild(ul);
+            for (var i=0; i<array.length; i++){
+                var li=document.createElement('li');
+                ul.appendChild(li);
+                li.innerHTML=array[i];
+
+            }
+        }
+	</script> 
+    </head>
+    <body>
+	
+        <form name = "calc"> 
+            
+        <table> 
+            
+        <tr> 
+            <td colspan=5><input id="btn" name="display"
+                onkeypress="return event.charCode >= 48 
+                && event.charCode <= 57" type="text"> 
+            </td> 
+        </tr> 
+        <tr> 
+            <td><input id="btn" type="button" value="1" OnClick="calc.display.value+='1'"></td> 
+            <td><input id="btn" type="button" value="2" OnClick="calc.display.value+='2'"></td> 
+            <td><input id="btn" type="button" value="3" OnClick="calc.display.value+='3'"></td> 
+            <td><input id="btn" type="button" value="C" OnClick="calc.display.value='' "></td> 
+            <td><input id="btn" type="button" value=&#8592
+                    OnClick="backspace(this.form)"> 
+            </td> 
+             
+        </tr> 
+        
+        <tr> 
+            <td><input id="btn" type="button" value="4"
+                    OnClick="calc.display.value+='4'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="5"
+                    OnClick="calc.display.value+='5'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="6"
+                    OnClick="calc.display.value+='6'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="-"
+                    OnClick="calc.display.value+='-'"> 
+            </td>  
+            
+            <td><input id="btn" type="button" value="cos"
+                    OnClick="calc.display.value='Math.cos('"> 
+            </td> 
+        </tr> 
+        
+        <tr> 
+            <td><input id="btn" type="button" value="7"
+                    OnClick="calc.display.value+='7'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="8"
+                    OnClick="calc.display.value+='8'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="9"
+                    OnClick="calc.display.value+='9'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="*"
+                    OnClick="calc.display.value+='*'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="sin"
+                    OnClick="calc.display.value='Math.sin('"> 
+            </td> 
+        </tr> 
+        
+        <tr> 
+            <td><input id="btn" type="button" value="."
+                    OnClick="calc.display.value+='.'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="0"
+                    OnClick="calc.display.value+='0'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="+"
+                    OnClick="calc.display.value+='+'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="/"
+                    OnClick="calc.display.value+='/'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="tan"
+                    OnClick="calc.display.value='Math.tan('"> 
+            </td> 
+        </tr> 
+        
+        <tr>  
+            
+            <td><input id="btn" type="button" value="pi"
+                    OnClick="calc.display.value+='Math.PI'"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="**"
+                    OnClick="calc.display.value+='**';"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value="("
+                    OnClick="calc.display.value+='('"> 
+            </td> 
+            
+            <td><input id="btn" type="button" value=")"
+                    OnClick="calc.display.value+=')'"> 
+            </td> 
+            <td><input id="btn" type="button" value="="
+                OnClick="calculate(this.form)"> 
+        </td>
+        </tr>  
+        </table> 
+        <input type="button" style="width: 50px; height: 20px;" value="history" onclick="his();">
+        </form> 
+        <div id ="last"></div>
+    </body>     
+</html>
