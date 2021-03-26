@@ -1,8 +1,8 @@
 <html>
     <head>
-        <title>
-            Simple Calculator
-	    </title>
+        <title>Simple Calculator</title>
+	    <script src=script.js></script>
+	    <link href="style.css" rel="stylesheet">
     </head>
     <body>
 	
